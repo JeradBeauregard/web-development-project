@@ -24,15 +24,26 @@
           $schools = mysqli_query($connect,$query);
 
           foreach($schools as $school){
-            echo '<div class="col-md-8">
-              <div class="card mb-4" style="width: 80rem;">
-                <div class="card-body">
-                  <h5 class="card-title">' .$school['Board']. '</h5>
-                  <span class="badge rounded-pill text-bg-primary">' . $school['School Type'] .'</span>
-                  <span class="badge rounded-pill text-bg-success">' . $school['Language'] .'</span>
-                </div>
-              </div>
-            </div>';
+            echo '<div class="col-md-4">
+                  <div class="card mb-4" style="">
+                    <div class="card-body">
+                      <h5 class="card-title">' . $school['Board'] . '</h5>
+                      <span class="badge bg-primary">' . $school['School Type'] .'</span>
+                      <span class="badge bg-success">' . $school['Language'] .'</span>
+                    </div>
+                    <div class="card-footer">
+                      <form action="updateschool.php" method="post">
+                        <input type="hidden" name="id" value="' . $school['Board No'] . '">
+                        <button type="submit" name="updateSchool" class="btn btn-sm btn-success">Edit</button>
+                      </form>
+
+                      <form action="deleteschool.php" method="GET">
+                        <input type="hidden" name="id" value="' . $school['Board No'] . '">
+                        <button type="submit" name="deleteSchool" class=" btn btn-sm btn-danger">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>';
           }
 
         ?>
