@@ -1,3 +1,36 @@
+<?php
+
+// will show us that the form is submitting
+// will insure form is submitted to php after button is pressed
+if(isset($_POST['addSchool'])){
+  print_r($_POST);
+
+  // Array ( [boardname] => jerry [language] => en [schooltype] => public [addSchool] => ) School added succesfully
+
+$boardname = $_POST['boardname'];
+$language = $_POST['language'];
+$schooltype = $_POST['schooltype'];
+
+// db connection
+include('reusables/conn.php');
+$query = "INSERT INTO schools (`Board`,`Language`,`School Type`) VALUES ('$boardname','$language','$schooltype')";
+
+$school = mysqli_query($connect, $query);
+if($school){
+
+echo 'School added succesfully';
+
+}
+else{
+
+  echo 'Unable to add the school. Error code: ' . mysqli_error();
+}
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +64,9 @@ include("reusables/conn.php");
             </div>
             <div class="mb-3">
                 <label for="schooltype" class="form-label">School Type</label>
-                <input type="text" class="form-control" id="schooltype" aria-describedby="School Type" name="language">
+                <input type="text" class="form-control" id="schooltype" aria-describedby="School Type" name="schooltype">
             </div> 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" name="addSchool">Submit</button>
         </form>
         </div>
     </div>

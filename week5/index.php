@@ -24,15 +24,8 @@
         $colors = mysqli_query($connect, $query); // function to execute query parameters (connection string, query)
        
 
-        foreach($colors as $color)){
-            $currentColor = mysqli_fetch_assoc($color)
-            $colorConvert = (array) $currentColor;
-            $colorArray = 
-            array_push()
-        }
-
-        foreach($colors as mysqli_fetch_assoc($colors)){
-            echo '<div style="'.'">'.$color['Name'].'</div>';
+        while ($color = mysqli_fetch_assoc($colors)){
+            echo '<div style="width: auto; height: 50px; background-color:'. $color['COL 2'] .';">'.$color['COL 1'].'</div>';
         }
 
         
